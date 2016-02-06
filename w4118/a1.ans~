@@ -1,0 +1,33 @@
+a1:
+1.In response to a clock interrupt, the OS saves the PC and user stack pointer
+of the currently executing process, and transfers control to the kernel clock
+interrupt handler,
+2.The clock interrupt handler saves the rest of the registers, as well as other
+machine state, such as the state of the floating point registers, in the process
+PCB.
+3.The OS invokes the scheduler to determine the next process to execute,
+4.The OS then retrieves the state of the next process from its PCB, and restores
+the registers. This restore operation takes the processor back to the state in
+which this process was previously interrupted, executing in user code with
+user mode privileges.c
+
+a2:
+When a process is terminated,  it briey moves to the zombie state and remains in that state until the parent invokes a call to wait().
+When this occurs, the process id as well as entry in the process table are both  released.   However,  if  a  parent  does  not  invoke wait(),  the  child process remains a zombie as long as the parent remains alive.  Once the parent process terminates,  the
+init
+process becomes the new parent of
+the zombie.  Periodically, the
+init
+process calls
+wait()
+which ultimately
+releases the pid and entry in the process table of the zombie process.
+
+b1:
+'typeof' is a keyword, is a way to refer to the type of an expression. 
+b2:
+'offsetof' is a macro. It is used to retrieve the offset of a member from the beginning of its parent structure.
+b3:
+'container_of()' is used to get the address of structure based on the address of its member.
+b4:
+c
